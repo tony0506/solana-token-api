@@ -9,3 +9,6 @@ node_modules/
 # Ignore logs and cache
 *.log
 cache/
+config/env.php
+.env
+vendor/
