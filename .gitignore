@@ -1,0 +1,11 @@
+# Ignore environment configuration files
+config/env.php
+.env
+
+# Ignore dependencies (optional if you want to exclude them)
+vendor/
+node_modules/
+
+# Ignore logs and cache
+*.log
+cache/
