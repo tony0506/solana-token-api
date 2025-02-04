@@ -6,12 +6,11 @@ require_once __DIR__ . '/lib/HttpClient.php';
 require_once __DIR__ . '/lib/TokenService.php';
 require_once __DIR__ . '/lib/OrcaService.php';
 require_once __DIR__ . '/lib/VestingService.php';
-require_once __DIR__ . '/lib/BurnService2.php';
+require_once __DIR__ . '/lib/BurnService.php';
 
 try {
     // Load environment variables
     $rpcUrl = $_ENV['SOLANA_RPC_URL'];
-    $tatumApiKey = $_ENV['TATUM_API_KEY']; // Load Tatum API Key
     $maxSupply = 1000000000; // 1 Billion max supply
 
     $raydiumVaults = [
@@ -33,8 +32,7 @@ try {
 
     // Burn Transactions - Add more transaction IDs when new burns happen
     $burnTransactions = [
-        "5nY9njt8p6gAjLsohPtTM2J1Z2G4risntLAtoCMBQHwzp8HF8kyaycXbf9hVbBawpU9rkov9mkqBYrgYuc2iNuVe", 
-        "NEW_BURN_TRANSACTION_ID_HERE" // Add future burns here
+        "5nY9njt8p6gAjLsohPtTM2J1Z2G4risntLAtoCMBQHwzp8HF8kyaycXbf9hVbBawpU9rkov9mkqBYrgYuc2iNuVe"
     ];
 
     // Initialize HTTP client
@@ -44,7 +42,7 @@ try {
     $tokenService = new TokenService($httpClient, $raydiumVaults);
     $orcaService = new OrcaService($httpClient, $orcaVault);
     $vestingService = new VestingService($httpClient, $vestingAccounts);
-    $burnService = new BurnService2($tatumApiKey, $burnTransactions);
+    $burnService = new BurnService($httpClient, $burnTransactions);
 
     // Fetch locked tokens
     $raydiumLockedTokens = $tokenService->getLockedTokens();
@@ -65,28 +63,24 @@ try {
 
     // API Routing
     switch ($endpoint) {
-        case 'total-burned':
-            echo json_encode(['totalBurned' => $burnedTokens['totalBurned'] ?? 0], JSON_PRETTY_PRINT);
-            break;
-    
         case 'circulating-supply':
             echo json_encode(['circulatingSupply' => $circulatingSupply], JSON_PRETTY_PRINT);
             break;
-    
+
         case 'total-supply':
             echo json_encode(['totalSupply' => $totalLocked + $circulatingSupply], JSON_PRETTY_PRINT);
             break;
-    
+
         case 'max-supply':
             echo json_encode(['maxSupply' => $maxSupply], JSON_PRETTY_PRINT);
             break;
-    
+
         case 'locked-addresses':
             echo json_encode([
                 'lockedAddresses' => array_merge($raydiumVaults, [$orcaVault], $vestingAccounts)
             ], JSON_PRETTY_PRINT);
             break;
-    
+
         default:
             // Return all data if no specific endpoint is requested
             echo json_encode([
@@ -107,7 +101,6 @@ try {
             ], JSON_PRETTY_PRINT);
             break;
     }
-    
 } catch (Exception $e) {
     header('Content-Type: application/json', true, 500);
     echo json_encode(['error' => $e->getMessage()], JSON_PRETTY_PRINT);
