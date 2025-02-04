@@ -17,7 +17,7 @@ Circulating Supply
 Returns the current circulating supply of the PSQR token.
 
 Endpoint:
-GET http://api.pudgysquirrels.com/index.php?endpoint=circulating-supply
+GET https://api.pudgysquirrels.com/index.php?endpoint=circulating-supply
 
 Response Example:
 { "circulatingSupply": 524246566.03042823 }
@@ -26,7 +26,7 @@ Total Supply
 Returns the total supply of the PSQR token, including locked and burned tokens.
 
 Endpoint:
-GET http://api.pudgysquirrels.com/index.php?endpoint=total-supply
+GET https://api.pudgysquirrels.com/index.php?endpoint=total-supply
 
 Response Example:
 { "totalSupply": 1000000000 }
@@ -35,7 +35,7 @@ Max Supply
 Returns the maximum supply of the PSQR token.
 
 Endpoint:
-GET http://api.pudgysquirrels.com/index.php?endpoint=max-supply
+GET https://api.pudgysquirrels.com/index.php?endpoint=max-supply
 
 Response Example:
 { "maxSupply": 1000000000 }
@@ -44,7 +44,7 @@ Locked Addresses
 Returns a list of locked token vesting addresses with their balances.
 
 Endpoint:
-GET http://api.pudgysquirrels.com/index.php?endpoint=locked-addresses
+GET https://api.pudgysquirrels.com/index.php?endpoint=locked-addresses
 
 Response Example:
 { "lockedAddresses": [ "DCxenpJwqkkGJBruJLqqFr4N8715BfidQjDnskTf9iHe", "Crzhe9YVrsDSh4xeE4qptMnfhXg7tUR6btgvdCgPB8zm", "3RsfdsMu44guL29ubWXdTaSjo8A7TJMGVEwLyHotgVZT", "7LRmmmg6GXd2AuNUWk1fMM7J79J6VfAgKHpenHgoiAiQ", "EtnDy2kSeWAgFGK8pZ3kt52gytNURYTWq3qdGHLoAvcs" ] }
@@ -53,10 +53,10 @@ Burned Tokens
 Returns burned token transactions and the total burned supply.
 
 Endpoint:
-GET http://api.pudgysquirrels.com/index.php?endpoint=burned-tokens
+GET https://api.pudgysquirrels.com/index.php?endpoint=total-burned
 
 Response Example:
-{ "burnTransactions": { "5nY9njt8p6gAjLsohPtTM2J1Z2G4risntLAtoCMBQHwzp8HF8kyaycXbf9hVbBawpU9rkov9mkqBYrgYuc2iNuVe": 38493647.02778053 }, "totalBurned": 38493647.02778053 }
+{ "totalBurned": 38493647.027780525 }
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 Setup Instructions
