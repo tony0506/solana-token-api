@@ -5,6 +5,12 @@ class BurnService2
     private string $tatumApiKey;
     private array $burnTransactions;
     private string $tatumRpcUrl = 'https://solana-mainnet.gateway.tatum.io/';
+    
+    // List of known burn wallets (Add future burn wallets here)
+    private array $burnWallets = [
+        "fgqmxERhVp8MJ59Sv3L46DK1QF7DgjPffHVwKhdctGq", // First burn wallet
+        "GJmY1q1WWRENW355WLgiyaSfkh7qTJbTEqr36Ba9xVCy" // Second burn wallet (New)
+    ];
 
     public function __construct(string $tatumApiKey, array $burnTransactions)
     {
@@ -56,13 +62,15 @@ class BurnService2
             return null; // Invalid or missing data
         }
 
+        $burnAmount = 0;
+
         foreach ($response['result']['meta']['preTokenBalances'] as $balance) {
-            if ($balance['owner'] === "fgqmxERhVp8MJ59Sv3L46DK1QF7DgjPffHVwKhdctGq") {
-                return $balance['uiTokenAmount']['uiAmount'] ?? 0;
+            if (in_array($balance['owner'], $this->burnWallets)) { // Check against all burn wallets
+                $burnAmount += $balance['uiTokenAmount']['uiAmount'] ?? 0;
             }
         }
 
-        return null; // No burn amount found
+        return $burnAmount > 0 ? $burnAmount : null; // Return amount only if valid
     }
 
     private function sendRequest(array $payload): ?array

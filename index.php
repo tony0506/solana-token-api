@@ -37,7 +37,7 @@ try {
         "5UjhimNoW7kMGAQv15JsrqRT6NvtnTKFj8s3qxEoDg62yW4ftet89ViWzahsmmYs8UvjfHPi7HL6ViSru48kDLp6",
         "NEW_BURN_TRANSACTION_ID_HERE" // Add future burns here
     ];
-
+    
     // Initialize HTTP client
     $httpClient = new HttpClient($rpcUrl);
 
