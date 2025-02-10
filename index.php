@@ -33,7 +33,8 @@ try {
 
     // Burn Transactions - Add more transaction IDs when new burns happen
     $burnTransactions = [
-        "5nY9njt8p6gAjLsohPtTM2J1Z2G4risntLAtoCMBQHwzp8HF8kyaycXbf9hVbBawpU9rkov9mkqBYrgYuc2iNuVe", 
+        "5nY9njt8p6gAjLsohPtTM2J1Z2G4risntLAtoCMBQHwzp8HF8kyaycXbf9hVbBawpU9rkov9mkqBYrgYuc2iNuVe",
+        "5UjhimNoW7kMGAQv15JsrqRT6NvtnTKFj8s3qxEoDg62yW4ftet89ViWzahsmmYs8UvjfHPi7HL6ViSru48kDLp6",
         "NEW_BURN_TRANSACTION_ID_HERE" // Add future burns here
     ];
 
